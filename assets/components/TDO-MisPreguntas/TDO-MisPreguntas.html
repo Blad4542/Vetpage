@@ -1,0 +1,55 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="../TDO-DetallePregunta/TDO-DetallePregunta.html">
+
+<link rel="import" href="../../behaviors/AjaxBehavior.html">
+
+<!--
+`TDO-MisPreguntas`
+
+
+@demo demo/index.html
+-->
+
+<dom-module id="TDO-MisPreguntas">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <template is="dom-repeat" items="[[preguntas]]">
+      <h2>Titulo: [[item.titulo]]</h2>
+      <p>Descripción: [[item.descripcion]]</p>
+      <paper-button on-tap="verPregunta" data-id$="[[item.id]]">Ver pregunta</paper-button>
+    </template>
+
+    <TDO-DetallePregunta id-pregunta="{{idPregunta}}"></TDO-DetallePregunta>
+
+    <paper-spinner active="[[loading]]"></paper-spinner>
+
+    <iron-ajax
+      id="getPreguntas"
+      url="/api/pregunta/misPreguntas"
+      auto
+      handle-as="json"
+      loading="{{loading}}"
+      method="GET"
+      content-type="application/json"
+      last-Response="{{preguntas}}"
+      on-response="_onResponse"
+      on-error="_onError"
+    ></iron-ajax>
+  </template>
+
+  <script src="./TDO-MisPreguntas.js"></script>
+
+</dom-module>

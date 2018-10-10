@@ -1,0 +1,70 @@
+<link rel="import" href="./UtilsBehavior.html">
+<link rel="import" href="./MessageBehavior.html">
+
+<script>
+  AjaxBehaviorImpl = {
+    properties: {},
+
+    _onResponse: function (event, request) {
+      let response;
+
+      response = request.xhr.response;
+
+      if (response.id === 7) {
+        return window.location = "/login";
+      }
+
+      if (response.id === 30) {
+        return window.location = "/";
+      }
+
+      if (response && response.id && response.type && Object.keys(response).length === 2) {
+        return console.log(this.messages.get(response.id));
+      } else {
+        if (request.xhr.status === 201) {
+          return console.log(this.messages.get(6));
+        }
+      }
+
+      console.log(response);
+    },
+
+    _onError: function (event, error) {
+      let response;
+
+      response = error.request.xhr.response;
+
+      console.log(response && response.id ? this.messages.get(response.id) : response);
+    },
+
+    _onPreSubmit: event => {
+      let body;
+      let keys;
+
+      body = event.target.request.body;
+      keys = Object.keys(body);
+
+      for (let key of keys) {
+        if (body[key] === undefined || body[key] === null || (typeof body[key] === "string" && body[key].trim() === "")) {
+          delete body[key];
+        }
+      }
+    },
+
+    _submit: event => event.target.parentNode.submit(),
+
+    _reset: event => {
+      let target;
+
+      target = event.target;
+
+      if (target.parentNode.reset) {
+        return target.parentNode.reset();
+      }
+
+      target.reset();
+    }
+  };
+
+  AjaxBehavior = [MessageBehavior, AjaxBehaviorImpl];
+</script>

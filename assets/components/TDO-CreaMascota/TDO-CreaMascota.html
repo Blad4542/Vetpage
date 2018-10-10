@@ -1,0 +1,86 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-date-picker-item/paper-date-picker-item.html">
+
+<link rel="import" href="../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+
+<link rel="import" href="../../behaviors/AjaxBehavior.html">
+
+<script src="../../bower_components/moment/min/locales.js"></script>
+
+<!--
+`TDO-CreaMascota`
+Componente para crear una mascota en el sistema.
+
+@demo demo/index.html
+-->
+
+<dom-module id="TDO-CreaMascota">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <form is="iron-form" method="POST" action="/api/mascota" id="formData" on-iron-form-response="onResponse"
+          on-iron-form-error="_onError" on-iron-form-presubmit="onPreSubmit">
+
+      <paper-input label="Nombre de la mascota" name="nombre">
+        <iron-icon icon="pets" prefix></iron-icon>
+      </paper-input>
+
+      <paper-date-picker-item icon="icons:today" date="{{date}}" date-format="ll" placeholder="Fecha de nacimiento"
+                              locale="es"></paper-date-picker-item>
+
+      <vaadin-combo-box label="Sexo" items='["M","F"]' name="sexo"></vaadin-combo-box>
+
+      <vaadin-combo-box label="Tipo de mascota" items="[[tiposMascota]]" item-label-path="descripcion"
+                        name="tipoMascota" item-value-path="id"
+                        on-value-changed="onValueTipoMascotaChanged"></vaadin-combo-box>
+
+      <vaadin-combo-box label="Raza" items="[[razas]]" item-label-path="descripcion" item-value-path="id"
+                        name="razaId"></vaadin-combo-box>
+
+      <paper-button raised on-tap="_submit">Crear</paper-button>
+      <paper-button raised on-tap="_reset">Reiniciar</paper-button>
+    </form>
+
+    <paper-spinner active="[[loading]]"></paper-spinner>
+
+    <iron-ajax
+      id="getTiposMascota"
+      url="/api/tipo_mascota"
+      auto
+      handle-as="json"
+      loading="{{loading}}"
+      method="GET"
+      content-type="application/json"
+      last-Response="{{tiposMascota}}"
+      on-response="_onResponse"
+      on-error="_onError"
+    ></iron-ajax>
+
+    <iron-ajax
+      id="getRaza"
+      url="/api/raza"
+      handle-as="json"
+      loading="{{loading}}"
+      method="GET"
+      content-type="application/json"
+      last-Response="{{razas}}"
+      on-response="_onResponse"
+      on-error="_onError"
+    ></iron-ajax>
+
+  </template>
+
+  <script src="./TDO-CreaMascota.js"></script>
+</dom-module>

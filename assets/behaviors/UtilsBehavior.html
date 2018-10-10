@@ -1,0 +1,46 @@
+<script>
+  UtilsBehavior = {
+    properties: {
+      baseDomain: {
+        type: String,
+        value: () => {
+          let location;
+
+          location = window.location;
+
+          return `${location.protocol}//${location.host}/api`;
+        }
+      },
+      headerAuth: {
+        type: Object,
+        value: () => {
+          let token;
+
+          token = localStorage.getItem("token");
+
+          return {
+            "Authorization": `JWT ${token}`
+          }
+        }
+      },
+      headerRefresh: {
+        type: Object,
+        value: () => {
+          let refreshToken;
+
+          refreshToken = localStorage.getItem("refreshToken");
+
+          return {
+            "Authorization": `JWT ${refreshToken}`
+          }
+        }
+      }
+    },
+
+    setTokens: (token, refreshToken) => {
+      localStorage.setItem("token", token);
+      localStorage.setItem("refreshToken", refreshToken);
+    }
+
+  };
+</script>

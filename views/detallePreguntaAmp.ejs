@@ -1,0 +1,13 @@
+<h1>Detalle pregunta</h1>
+<h1>Título</h1>
+<h2><%= pregunta.titulo %></h2>
+<h1>Descripción</h1>
+<%= pregunta.descripcion %>
+
+<h1>Respuestas</h1>
+
+<ul>
+  <% _.each(pregunta.respuesta, function (respuesta) { %>
+  <li>Descripción: <%= respuesta.respuesta %></li>
+  <% }) %>
+</ul>

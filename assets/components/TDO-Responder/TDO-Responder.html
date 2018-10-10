@@ -1,0 +1,43 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="../../behaviors/AjaxBehavior.html">
+
+<!--
+`TDO-Responder`
+
+
+@demo demo/index.html
+-->
+
+<dom-module id="TDO-Responder">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    {{idPregunta}}
+
+    <form is="iron-form" method="POST" action="/api/respuesta" id="formData" on-iron-form-response="onResponse"
+          on-iron-form-error="_onError" on-iron-form-presubmit="onPreSubmit">
+
+      <paper-textarea label="Respuesta" name="respuesta"></paper-textarea>
+
+      <paper-button raised on-tap="_submit">Preguntar</paper-button>
+      <paper-button raised on-tap="_reset">Reiniciar</paper-button>
+
+    </form>
+
+    <paper-spinner active="[[loading]]"></paper-spinner>
+
+  </template>
+
+  <script src="./TDO-Responder.js"></script>
+</dom-module>

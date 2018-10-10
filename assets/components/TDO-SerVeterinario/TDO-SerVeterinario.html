@@ -1,0 +1,43 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="../../behaviors/AjaxBehavior.html">
+
+<!--
+`TDO-SerVeterinario`
+
+
+@demo demo/index.html
+-->
+
+<dom-module id="TDO-SerVeterinario">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <paper-button on-tap="serVeterinario">Ser veterinario</paper-button>
+
+    <paper-spinner active="[[loading]]"></paper-spinner>
+
+    <iron-ajax
+      id="serVeterinario"
+      url="/api/veterinario"
+      handle-as="json"
+      loading="{{loading}}"
+      method="POST"
+      content-type="application/json"
+      on-response="_onResponse"
+      on-error="_onError"
+    ></iron-ajax>
+
+  </template>
+
+  <script src="./TDO-SerVeterinario.js"></script>
+</dom-module>

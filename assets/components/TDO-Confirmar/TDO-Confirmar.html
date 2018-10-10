@@ -1,0 +1,40 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../../behaviors/AjaxBehavior.html">
+
+<!--
+`TDO-Confirmar`
+
+
+@demo demo/index.html
+-->
+
+<dom-module id="TDO-Confirmar">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <paper-spinner active="[[loading]]"></paper-spinner>
+
+    <iron-ajax
+      id="confirmar"
+      url="/api/auth/confirm/[[token]]"
+      auto
+      handle-as="json"
+      loading="{{loading}}"
+      method="GET"
+      content-type="application/json"
+      on-response="onResponse"
+      on-error="_onError"
+    ></iron-ajax>
+  </template>
+
+  <script src="./TDO-Confirmar.js"></script>
+</dom-module>

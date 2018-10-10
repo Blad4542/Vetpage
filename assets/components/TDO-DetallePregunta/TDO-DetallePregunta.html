@@ -1,0 +1,63 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+
+<link rel="import" href="../../behaviors/AjaxBehavior.html">
+
+<!--
+`TDO-DetallePregunta`
+
+
+@demo demo/index.html
+-->
+
+<dom-module id="TDO-DetallePregunta">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <h2>Título: [[pregunta.titulo]]</h2>
+    <div>Descripción: [[pregunta.descripcion]]</div>
+
+    <template is="dom-repeat" items="[[respuestas]]">
+      <h2>Usuario: [[item.usuarioId]]</h2>
+      <p>Respuesta: [[item.respuesta]]</p>
+    </template>
+
+    <paper-spinner active="[[loading]]"></paper-spinner>
+
+    <iron-ajax
+      id="getPregunta"
+      url="/api/pregunta"
+      handle-as="json"
+      loading="{{loading}}"
+      method="GET"
+      content-type="application/json"
+      last-Response="{{pregunta}}"
+      on-response="_onResponse"
+      on-error="_onError"
+    ></iron-ajax>
+
+    <iron-ajax
+      id="getRespuestas"
+      url="/api/respuesta"
+      handle-as="json"
+      loading="{{loading}}"
+      method="GET"
+      content-type="application/json"
+      last-Response="{{respuestas}}"
+      on-response="_onResponse"
+      on-error="_onError"
+    ></iron-ajax>
+
+  </template>
+
+  <script src="./TDO-DetallePregunta.js"></script>
+</dom-module>

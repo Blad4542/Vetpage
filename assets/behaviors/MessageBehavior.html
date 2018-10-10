@@ -1,0 +1,47 @@
+<script>
+  MessageBehavior = {
+    properties: {
+      messages: {
+        type: Map,
+        value: () => new Map([
+          [2, "Parece que tus datos son inválidos."],
+          [3, "Parece que hubo un error, si puedes, háznoslo saber."],
+          [4, "Te has deslogueado correctamente."],
+          [5, "Parece que alguno de los datos que ingresaste es incorrecto."],
+          [6, "Se registró satisfactoriamente tu información."],
+          [7, "Necesitas estar dentro del sistema para realizar esta acción."],
+          [8, "Parece que has ingresado un email incorrecto."],
+          [9, "Parece que tu acceso a la plataforma ha vencido, por favor, logueate de nuevo."],
+          [10, "Parece que tu acceso es inválido, por favor, logueate de nuevo."],
+          [11, "Parece que hemos tenido un error en nuestro sistema, si puedes, háznolo saber."],
+          [12, "Parece que tu contraseña es incorrecta."],
+          [13, "Parece que tu usuario es incorrecto."],
+          [14, "Parece que no tienes suficientes permisos para acceder a este recurso, si tienes alguna duda, háznolo saber."],
+          [16, "Tu información fue actualizada correctamente."],
+          [17, "Parece que hubo un error mientras accedías al sistema, si puedes, háznolo saber."],
+          [18, "Parece que el nombre de usuario con el que intentas registrarte ya existe, por favor elige otro."],
+          [19, "Parece que hubo un error al intentar crear tu acceso, por favor, logueate de nuevo."],
+          [20, "Parece que hubo un error al enviarte el correo para recuperar tu cuenta, por favor inténtalo de nuevo."],
+          [21, "Registrado correctamente, ¡Bienvenido!"],
+          [22, "Parece que aún no has confirmado tu cuenta, por favor ve a tu correo y confirma tu cuenta."],
+          [23, "Ahora eres un veterinario de nuestra plataforma, ¡Felicitaciones"],
+          [24, "El correo fue enviádo correctamente a tu bandeja de correo electrónico, por favor verifícala."],
+          [25, "El usuario con el que intentas acceder no existe, por favor ¡regístrate!"],
+          [26, "No tienes permiso para consultar la información de este elemento."],
+          [27, "Parece que no tienes mascotas registradas, por favor ¡registra una!"],
+          [28, "Parece que no tienes preguntas registradas, puedes registrar una en la sección de crear pregunta."],
+          [29, "No puedes modificar tu pregunta, ya que un veterinario ya la contestó."],
+        ])
+      },
+      type: {
+        Object,
+        value: () => ({
+          BAD_REQUEST: "badRequest",
+          SERVER_ERROR: "serverError",
+          OK: "ok",
+          FORBIDDEN: "forbidden"
+        })
+      }
+    },
+  };
+</script>

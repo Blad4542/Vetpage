@@ -1,0 +1,7 @@
+<h1>¡Bienvenido!</h1>
+
+<ul>
+  <% _.each(preguntas, function (pregunta) { %>
+  <li>Título: <a href="/pregunta/<%= pregunta.id %>/html/<%= pregunta.slug %>"><%= pregunta.titulo %></a>, Pregunta: <%= pregunta.descripcion%></li>
+  <% }) %>
+</ul>
