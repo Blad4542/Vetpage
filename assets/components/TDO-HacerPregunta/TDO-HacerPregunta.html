@@ -26,13 +26,14 @@
       :host {
         display: block;
       }
+
     </style>
 
     <form is="iron-form" method="POST" action="/api/pregunta" id="formData" on-iron-form-response="onResponse"
-          on-iron-form-error="_onError">
+      on-iron-form-error="_onError">
 
       <vaadin-combo-box label="Mis mascotas" items="[[misMascotas]]" item-label-path="nombre" name="mascotaId"
-                        item-value-path="id"></vaadin-combo-box>
+        item-value-path="id"></vaadin-combo-box>
 
       <paper-input label="Título de la pregunta" name="titulo">
         <iron-icon icon="pets" prefix></iron-icon>
@@ -46,18 +47,8 @@
 
     <paper-spinner active="[[loading]]"></paper-spinner>
 
-    <iron-ajax
-      id="getMisMascotas"
-      url="/api/mascota/misMascotas"
-      auto
-      handle-as="json"
-      loading="{{loading}}"
-      method="GET"
-      content-type="application/json"
-      last-Response="{{misMascotas}}"
-      on-response="_onResponse"
-      on-error="_onError"
-    ></iron-ajax>
+    <iron-ajax id="getMisMascotas" url="/api/mascota/misMascotas" auto handle-as="json" loading="{{loading}}" method="GET"
+      content-type="application/json" last-Response="{{misMascotas}}" on-response="_onResponse" on-error="_onError"></iron-ajax>
   </template>
 
   <script src="./TDO-HacerPregunta.js"></script>
